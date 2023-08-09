@@ -21,7 +21,9 @@ Code samples for the DevUp conference presentation Azure AD for devs
 
 ## Migration Gotchas
 
-## Diagnostic tools
+## Best Practices for App Registrations
+- https://learn.microsoft.com/en-us/azure/active-directory/develop/identity-platform-integration-checklist
+- [Configure your Azure AD application with Integration assistant - Waldek Mastykarz](https://blog.mastykarz.nl/configure-azure-ad-application-integration-assistant/)
 
 ## Azure AD Sample projects
 
