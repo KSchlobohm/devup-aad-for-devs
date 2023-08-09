@@ -33,3 +33,10 @@ Code samples for the DevUp conference presentation: Azure AD for devs.
 **Reliable Web App Patterns**
 - https://github.com/azure/reliable-web-app-pattern-dotnet
 - https://github.com/azure/reliable-web-app-pattern-java
+
+# Getting started
+
+1. Use the steps to create two Azure AD App registrations
+1. Open the solution
+1. Set multiple startup projects and choose both the client and service project
+1. F5 and Debug the app to see it in action
