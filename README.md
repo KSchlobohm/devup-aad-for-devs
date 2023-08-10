@@ -39,4 +39,5 @@ Code samples for the DevUp conference presentation: Azure AD for devs.
 1. Use the steps to create two Azure AD App registrations
 1. Open the solution
 1. Set multiple startup projects and choose both the client and service project
+   https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=vs-2022
 1. F5 and Debug the app to see it in action
