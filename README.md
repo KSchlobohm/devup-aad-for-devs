@@ -25,7 +25,10 @@ Code samples for the DevUp conference presentation: Azure AD for devs.
 - https://learn.microsoft.com/en-us/azure/active-directory/develop/identity-platform-integration-checklist
 - [Configure your Azure AD application with Integration assistant - Waldek Mastykarz](https://blog.mastykarz.nl/configure-azure-ad-application-integration-assistant/)
 
-## Azure AD Sample projects
+## Additional Resources
+- [Generate tokens with dotnet user-jwts | Microsoft Learn](https://learn.microsoft.com/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows)
+
+Azure AD Sample projects
 
 **learn.microsoft.com**
 - https://learn.microsoft.com/en-us/azure/active-directory/develop/sample-v2-code?tabs=apptype
