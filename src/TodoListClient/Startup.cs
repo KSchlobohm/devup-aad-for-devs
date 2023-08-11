@@ -16,15 +16,14 @@ namespace TodoListClient
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
             services.AddScoped<ITodoListService, TodoListService>();
             services.AddHttpClient();
 
-            services.AddDistributedMemoryCache();
-
             services.AddOptions();
 
-            services.AddControllersWithViews();
 
+            services.AddDistributedMemoryCache();
             services.AddRazorPages();
         }
 

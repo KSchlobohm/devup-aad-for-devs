@@ -19,20 +19,40 @@ Run the app and observe the CRUD operations for TodListClient a .NET 7 ASP.NET C
 
 ## Additional resources
 
-1. Best Practices for App Registrations
+
+### *Tip #1* Use Azure AD Integration Assistant to check your settings
    - [Best practices for the Microsoft identity platform - Microsoft Entra | Microsoft Learn](https://learn.microsoft.com/azure/active-directory/develop/identity-platform-integration-checklist)
    - [Configure your Azure AD application with Integration assistant - Waldek Mastykarz](https://blog.mastykarz.nl/configure-azure-ad-application-integration-assistant/)
-1. Azure AD App Registration Quickstarts
-1. Azure AD Sample projects
+
+   ![#image of the Azure AD integration assistant](./docs/images/ImageOfTheIntegrationAssistant.png)
+
+### *Tip #2* Sample code for all your scenarios x
+
+   ![#image of Azure AD Quickstart](./docs/images/ImageOfTheQuickstartForAspNetCore.png)
+
+   And other Azure AD Sample projects
    - [Code samples for Microsoft identity platform authentication and authorization - Microsoft Entra | Microsoft Learn](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code?tabs=apptype)
    - Reliable Web App Patterns
       - [Reliable web app pattern for .NET Azure Reference Architectures | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/web-apps/guides/reliable-web-app/dotnet/plan-implementation)
       - [Reliable web app pattern for Java - Azure Reference Architectures | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/web-apps/guides/reliable-web-app/java/plan-implementation)
-1. Debug App Registrations with [authr.dev](https://authr.dev/)
-1. Host Name Preservation
-   <!-- don't do this
+
+### *Tip #3* Debug App Registrations with [authr.dev](https://authr.dev/)
+
+   ![#image of the authr.dev website](./docs/images/ImageOfTheAuthrDevPage.png)
+
+### *Tip #4* Compare App Registration Manifests (use that one that works)
+
+   ![#image of app registration manifest](./docs/images/AppRegistrationManifest.png)
+
+### *Tip #5* Use IDownstreamAPI to make HTTP calls without managing tokens
+
+   ![#image of the IDownstreamAPI in visual studio](./docs/images/UsingIDownstreamApiToAccessApis.png)
+
+<!--
+ 1. Host Name Preservation
+   -- don't do this
    https://github.com/Azure/reliable-web-app-pattern-dotnet/blob/3391894cb907df3971acd561af1ec83d0b4dca23/src/Relecloud.Web/Startup.cs#L202
-   -->
+   
    - [Host name preservation - Azure Architecture Center | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/best-practices/host-name-preservation)
    - [Deploying web apps to App Services as Linux containers · (github.com)](https://github.com/AzureAD/microsoft-identity-web/wiki/Deploying-Web-apps-to-App-services-as-Linux-containers)
 1. The `IdentityModelEventSource.ShowPII` [property](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/PII)
@@ -41,7 +61,7 @@ Run the app and observe the CRUD operations for TodListClient a .NET 7 ASP.NET C
    - hasGroups:true
    - nested group membership
 1. [Generate tokens with dotnet user-jwts | Microsoft Learn](https://learn.microsoft.com/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows)
-
+ -->
 
 ## Troubleshooting
 Tips for dealing with issues.
