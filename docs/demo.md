@@ -31,7 +31,7 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
 1. Choose ASP.NET Core Web App
 1. Apply the recommended changes
 1. Download the code sample
-1. Run the web app and observe
+1. Run the web app and observe (talk about manifest.json while that starts)
 
 - We can see the Quickstart working as expected.
 
