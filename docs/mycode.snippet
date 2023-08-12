@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+<CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>New ITodoListService demonstrating IDownstreamApi</Title>
+      <Shortcut>aad4devs-downstream</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+            public class TodoListDownstreamApi : ITodoListService
+            {
+                private IDownstreamApi _downstreamApi;
+
+                public TodoListDownstreamApi(IDownstreamApi todoListService)
+                {
+                    _downstreamApi = todoListService;
+                }
+
+                public Task CreateTodoItem(Todo todo)
+                {
+                    return _downstreamApi.PostForUserAsync("TodoList", todo);
+                }
+
+                public Task DeleteTodoItem(int id)
+                {
+                    return _downstreamApi.DeleteForUserAsync("TodoList", new Todo(),
+                        options => options.RelativePath = $"api/todolist/{id}");
+                }
+
+                public Task<Todo> GetTodoItem(int id)
+                {
+                    return _downstreamApi.GetForUserAsync<Todo>(
+                        "TodoList",
+                        options => options.RelativePath = $"api/todolist/{id}")!;
+                }
+
+                public Task<IEnumerable<Todo>> GetTodoItems()
+                {
+                    return _downstreamApi.GetForUserAsync<IEnumerable<Todo>>("TodoList")!;
+                }
+
+                public Task UpdateTodoItem(Todo data)
+                {
+                    return _downstreamApi.CallApiForUserAsync<Todo, Todo>(
+                        "TodoList", data,
+                        options => { options.RelativePath = $"api/todolist/{data.Id}"; options.HttpMethod = HttpMethod.Patch; });
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Azure AD for Devs: Updated API TodoListController</Title>
+      <Shortcut>aad4devs-todolistapi</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[
+            [Authorize]
+            [Route("api/[controller]")]
+            public class TodoListController : Controller
+            {
+                // In-memory TodoList
+                private static readonly Dictionary<int, Todo> TodoStore = new Dictionary<int, Todo>();
+
+                // This is needed to get access to the internal HttpContext.User, if available.
+                private readonly IHttpContextAccessor _contextAccessor;
+
+                /// <summary>
+                /// We store the object id of the user/app derived from the presented Access token
+                /// </summary>
+                private string _currentPrincipalId = string.Empty;
+
+                public TodoListController(IHttpContextAccessor contextAccessor)
+                {
+                    _contextAccessor = contextAccessor;
+
+                    // We seek the details of the user/app represented by the access token presented to this API, This can be empty unless authN succeeded
+                    // If a user signed-in, the value will be the unique identifier of the user.
+                    _currentPrincipalId = GetCurrentClaimsPrincipal()?.GetObjectId()!;
+                    
+                    // Pre-populate with sample data
+                    if (TodoStore.Count == 0)
+                    {
+                        TodoStore.Add(1, new Todo() { Id = 1, Owner = $"{_currentPrincipalId}", Title = "Pick up groceries" });
+                        TodoStore.Add(2, new Todo() { Id = 2, Owner = $"{_currentPrincipalId}", Title = "Finish invoice report" });
+                    }
+                }
+
+                /// <summary>
+                /// returns the current claimsPrincipal (user/Client app) dehydrated from the Access token
+                /// </summary>
+                /// <returns></returns>
+                private ClaimsPrincipal GetCurrentClaimsPrincipal()
+                {
+                    // Irrespective of whether a user signs in or not, the AspNet security middle-ware dehydrates the claims in the
+                    // HttpContext.User.Claims collection
+
+                    if (_contextAccessor.HttpContext != null && _contextAccessor.HttpContext.User != null)
+                    {
+                        return _contextAccessor.HttpContext.User;
+                    }
+
+                    return null;
+                }
+
+                [HttpGet()]
+                public IEnumerable<Todo> Get()
+                {
+                    // this is a request for all ToDo list items of a certain user.
+                    return TodoStore.Values.Where(x => x.Owner == _currentPrincipalId);
+                }
+
+                [HttpGet("{id}", Name = "Get")]
+                public Todo Get(int id)
+                {
+                    return TodoStore.Values.FirstOrDefault(todo => todo.Id == id && todo.Owner == _currentPrincipalId)!;
+                }
+
+                [HttpDelete("{id}")]
+                public void Delete(int id)
+                {
+                    // only delete if the ToDo list item belonged to this user
+                    if (TodoStore.Values.Any(todo => todo.Id == id && todo.Owner == _currentPrincipalId))
+                    {
+                        TodoStore.Remove(id);
+                    }
+                }
+
+                [HttpPost]
+                public IActionResult Post([FromBody] Todo todo)
+                {
+                    // The signed-in user becomes the owner
+                    todo.Owner = _currentPrincipalId;
+                    int nextid = TodoStore.Values.OrderByDescending(x => x.Id).FirstOrDefault()!.Id + 1;
+
+                    todo.Id = nextid;
+                    TodoStore.Add(nextid, todo);
+                    return Created($"/todo/{nextid}", todo);
+                }
+
+                [HttpPatch("{id}")]
+                public IActionResult Patch(int id, [FromBody] Todo todo)
+                {
+                    Todo existingToDo = TodoStore.Values.FirstOrDefault(todo => todo.Id == id)!;
+
+                    if (id != todo.Id || existingToDo == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // a user can only modify their own ToDos
+                    if (existingToDo.Owner != _currentPrincipalId)
+                    {
+                        return Unauthorized();
+                    }
+
+                    // Overwrite ownership, just in case
+                    todo.Owner = _currentPrincipalId;
+
+                    TodoStore.Remove(id);
+                    TodoStore.Add(id, todo);
+                    return Ok(todo);
+                }
+            }
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
