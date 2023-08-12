@@ -26,7 +26,7 @@ Run the app and observe the CRUD operations for TodListClient a .NET 7 ASP.NET C
 
    ![#image of the Azure AD integration assistant](./docs/images/ImageOfTheIntegrationAssistant.png)
 
-### *Tip #2* Sample code for all your scenarios x
+### *Tip #2* Sample code for all your scenarios
 
    ![#image of Azure AD Quickstart](./docs/images/ImageOfTheQuickstartForAspNetCore.png)
 
@@ -44,24 +44,26 @@ Run the app and observe the CRUD operations for TodListClient a .NET 7 ASP.NET C
 
    ![#image of app registration manifest](./docs/images/AppRegistrationManifest.png)
 
-### *Tip #5* Use IDownstreamAPI to make HTTP calls without managing tokens
+### *Tip #5* Use IDownstreamAPI to make API calls without managing tokens
 
    ![#image of the IDownstreamAPI in visual studio](./docs/images/UsingIDownstreamApiToAccessApis.png)
 
-<!--
- 1. Host Name Preservation
-   -- don't do this
-   https://github.com/Azure/reliable-web-app-pattern-dotnet/blob/3391894cb907df3971acd561af1ec83d0b4dca23/src/Relecloud.Web/Startup.cs#L202
+### *Tip #6* `IdentityModelEventSource.ShowPII` might show a more helpful error message
+
+   ![#image of the IdentityModelEventSource property in code](./docs/images/ImageOfIdentityModelEventSource.png)
+
+### *Tip #7* Use host name preservation with reverse proxies
    
    - [Host name preservation - Azure Architecture Center | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/best-practices/host-name-preservation)
    - [Deploying web apps to App Services as Linux containers · (github.com)](https://github.com/AzureAD/microsoft-identity-web/wiki/Deploying-Web-apps-to-App-services-as-Linux-containers)
-1. The `IdentityModelEventSource.ShowPII` [property](https://github.com/AzureAD/azure-activedirectory-identitymodel-extensions-for-dotnet/wiki/PII)
-1. Azure AD eventual consistency
-1. Migration gotchas
-   - hasGroups:true
-   - nested group membership
-1. [Generate tokens with dotnet user-jwts | Microsoft Learn](https://learn.microsoft.com/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows)
- -->
+
+   ![#image of invalid redirect issue related to host name preservatio](./docs/images/HostNamePreservationInvalidRedirectSample.png)
+
+### *Tip #8* Sharing my experience
+   - Use App Roles when you can
+   - Azure AD changes are asynchronous – give it a minute to propagate
+   - [Manage JSON Web Tokens in development with dotnet user-jwts | Microsoft Learn](https://learn.microsoft.com/aspnet/core/security/authentication/jwt-authn?view=aspnetcore-7.0&tabs=windows)
+
 
 ## Troubleshooting
 Tips for dealing with issues.

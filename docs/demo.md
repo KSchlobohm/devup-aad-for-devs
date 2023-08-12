@@ -27,6 +27,7 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
 
 1. Tip #2: Quickstarts
     - Open the quickstart blade on the new App Registration
+    - [And even more samples](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code?tabs=apptype)
 1. Choose ASP.NET Core Web App
 1. Apply the recommended changes
 1. Download the code sample
