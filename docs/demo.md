@@ -17,7 +17,9 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
 
 1. Open the Azure AD Portal and click `Create a new App Registration`
 
-    1. The name is `DevUpConf2023 TodoListClient`
+    ```
+    DevUpConf2023-TodoListClient
+    ```
 
 1. Tip #1: Diagnosing configuration issue with the Integration Assistant
 
@@ -78,6 +80,17 @@ I find it's useful to debug things in isolation. Let's view some options to debu
             <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.2" />
         </ItemGroup>
     ```
+
+1. Create a new Class the `TodoListDownstreamApi.cs` 
+
+    ```
+    TodoListDownstreamApi.cs
+    ```
+
+    -  Tip #5: Use the IDownstreamApi interface instead of HttpClient
+    -  implement with toolbox/snippet
+    
+    <br>
 
 1. Modify the dependency injection
 
@@ -170,10 +183,6 @@ I find it's useful to debug things in isolation. Let's view some options to debu
     public class TodoListController : Controller
     ```
 
-1. Create a new Class the `TodoListDownstreamApi.cs` 
-
-    -  Tip #5: Use the IDownstreamApi interface instead of HttpClient
-    -  implement with toolbox/snippet
     
 
 1. Register with dependency injection
@@ -226,12 +235,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
         "Instance": "https://login.microsoftonline.com/",
         "Domain": "kenschlobohm.onmicrosoft.com",
         "TenantId": "562b981e-de62-4d8c-a9d9-1993c19bc572",
-        "ClientId": "ba629276-ae6c-4bed-a05e-d372509a2e4f"
-    },
-    "TodoList": {
-        "Scopes": [ "api://ba629276-ae6c-4bed-a05e-d372509a2e4f/ToDoList.Read", "api://ba629276-ae6c-4bed-a05e-d372509a2e4f/ToDoList.ReadWrite" ],
-        "RelativePath": "api/todolist",
-        "BaseUrl": "https://localhost:7129/"
+        "ClientId": "[from azure portal]"
     },
     ```
 
