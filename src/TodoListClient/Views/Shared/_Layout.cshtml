@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Identity.Web;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,7 +33,19 @@
                     <!--
                         insert here
                     -->
-
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav navbar-right">
+                            <li class="navbar-text">Hello @User.GetDisplayName()!</li>
+                            <li class="nav-link text-dark"><a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignOut">Sign out</a></li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav navbar-right">
+                            <li><a asp-area="MicrosoftIdentity" asp-controller="Account" asp-action="SignIn">Sign in</a></li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>

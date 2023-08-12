@@ -6,5 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>2ebef47a-7c50-4a4b-8f11-3883c47b6528</UserSecretsId>
   </PropertyGroup>
-
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Identity.Web" Version="2.13.2" />
+		<PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="2.13.2" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="2.13.2" />
+	</ItemGroup>
 </Project>

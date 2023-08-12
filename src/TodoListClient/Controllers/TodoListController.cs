@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Web;
 using TodoListClient.Models;
 using TodoListClient.Services;
 
 namespace TodoListClient.Controllers
 {
+    [AuthorizeForScopes(ScopeKeySection = "TodoList:Scopes")]
     public class TodoListController : Controller
     {
         private ITodoListService _todoListService;
