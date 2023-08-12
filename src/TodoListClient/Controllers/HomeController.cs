@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TodoListClient.Models;
 
@@ -18,6 +19,7 @@ namespace TodoListClient.Controllers
             return View();
         }
 
+        [Authorize( Roles = "TodoListAdmin")]
         public IActionResult Privacy()
         {
             return View();
