@@ -120,6 +120,8 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Modify the host configuration (replace app.UseRouting())
 
+    - Tip #6 is buried here: use this property to see better error messages when debugging your code.
+
     ```cs
         IdentityModelEventSource.ShowPII = true;
         app.UseRouting();
