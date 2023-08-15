@@ -17,7 +17,9 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
 
 1. Open the Azure AD Portal and click `Create a new App Registration`
 
-    1. The name is `DevUpConf2023 TodoListClient`
+    ```
+    DevUpConf2023 TodoListClient
+    ```
 
 1. Tip #1: Diagnosing configuration issue with the Integration Assistant
 
@@ -58,7 +60,12 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 ## Step 4: Create an App Registration for the API
 
-1. Define a new App Registration `DevUpConf2023 TodoListService`
+1. Define a new App Registration
+
+    ```
+    DevUpConf2023 TodoListService
+    ```
+
 1. Add two API scopes
     1. `ToDoList.Read` - Allow users to consent
     1. `ToDoList.ReadWrite` - Allow users to consent
@@ -227,12 +234,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
         "Domain": "kenschlobohm.onmicrosoft.com",
         "TenantId": "562b981e-de62-4d8c-a9d9-1993c19bc572",
         "ClientId": "ba629276-ae6c-4bed-a05e-d372509a2e4f"
-    },
-    "TodoList": {
-        "Scopes": [ "api://ba629276-ae6c-4bed-a05e-d372509a2e4f/ToDoList.Read", "api://ba629276-ae6c-4bed-a05e-d372509a2e4f/ToDoList.ReadWrite" ],
-        "RelativePath": "api/todolist",
-        "BaseUrl": "https://localhost:7129/"
-    },
+    }
     ```
 
 1. Recreate the TodoList Controller in the API to use account specific settings
