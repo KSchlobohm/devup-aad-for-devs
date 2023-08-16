@@ -21,13 +21,13 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
     DevUpConf2023 TodoListClient
     ```
 
-1. Tip #1: Diagnosing configuration issue with the Integration Assistant
+1. <span style="color:black; background: yellow; padding: 3px">Tip #1:</span> Diagnosing configuration issue with the Integration Assistant
 
     - We can see that there should be an owner, but also see that the required configurations are set:
         - RedirectUri
         - Issue id_tokens
 
-1. Tip #2: Quickstarts
+1. <span style="color:black; background: yellow; padding: 3px">Tip #2:</span> Quickstarts
     - Open the quickstart blade on the new App Registration
     - [And even more samples](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code?tabs=apptype)
 1. Choose ASP.NET Core Web App
@@ -43,7 +43,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 **Demo**
 
 
-1. Tip #3 - Testing Authentication with [authr.dev](https://authr.dev)
+1. <span style="color:black; background: yellow; padding: 3px">Tip #3:</span> - Testing Authentication with [authr.dev](https://authr.dev)
 - Provide 2 settings and set the redirectUri on the app registration
     - TenantId
     - ClientId
@@ -73,6 +73,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Use the App Registration from Azure AD and compare it to a known good state to check for differences.
 
+- <span style="color:black; background: yellow; padding: 3px">Tip #4:</span> Compare App Registration Manifests (use that one that works)
 
 ## Step 5: Modify our frontend code to Authenticate users
 
@@ -107,6 +108,11 @@ I find it's useful to debug things in isolation. Let's view some options to debu
         }
     ```
 
+1. Create a new Class the `TodoListDownstreamApi.cs` 
+
+    - <span style="color:black; background: yellow; padding: 3px">Tip #5:</span> Use the IDownstreamApi interface instead of HttpClient
+    -  implement with toolbox/snippet
+
 1. Add the Login/Logout buttons
 
     ```cshtml
@@ -127,7 +133,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Modify the host configuration (replace app.UseRouting())
 
-    - Tip #6 is buried here: use this property to see better error messages when debugging your code.
+    - <span style="color:black; background: yellow; padding: 3px">Tip #6:</span> is buried here: use this property to see better error messages when debugging your code.
 
     ```cs
         IdentityModelEventSource.ShowPII = true;
@@ -177,13 +183,6 @@ I find it's useful to debug things in isolation. Let's view some options to debu
     public class TodoListController : Controller
     ```
 
-1. Create a new Class the `TodoListDownstreamApi.cs` 
-
-    -  Tip #5: Use the IDownstreamApi interface instead of HttpClient
-    -  implement with toolbox/snippet
-    
-
-1. Register with dependency injection
     - can't run the web app just yet... let's keep going
 
 ## Step 6: Modify our backend code to Authenticate users
@@ -233,7 +232,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
         "Instance": "https://login.microsoftonline.com/",
         "Domain": "kenschlobohm.onmicrosoft.com",
         "TenantId": "562b981e-de62-4d8c-a9d9-1993c19bc572",
-        "ClientId": "ba629276-ae6c-4bed-a05e-d372509a2e4f"
+        "ClientId": "[from azure portal]"
     }
     ```
 
@@ -255,21 +254,3 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 ```cs
     [Authorize(Roles ="Admin")]
 ```
-
-<!-- 
-1. Let's talk about Tips
-    1. Tip #4 - You only get roles, not parent/child membership. only the claims you selected, and group membership isn't hierarchical.
-    1. Tip #5 - If you try to use SecurityGroups try to filter groups to the ones you know are relevant or use [Dynamic Groups](https://techcommunity.microsoft.com/t5/microsoft-entra-azure-ad-blog/create-quot-nested-quot-groups-with-azure-ad-dynamic-groups/ba-p/3118024)
-
-## Step 8: Let's talk about Host Name Preservation
-Let's talk about Tip #6 - learning about Host Name Preservation
-One of the common problems for OpenID apps is setting the correct Redirect URI when behind a Reverse Proxy.
-
-Here's what the problem looks like. [Host name preservation - Azure Architecture Center | Microsoft Learn](https://learn.microsoft.com/en-us/azure/architecture/best-practices/host-name-preservation#incorrect-redirect-urls)
-
-1. Don't do this: https://github.com/Azure/reliable-web-app-pattern-dotnet/blob/3391894cb907df3971acd561af1ec83d0b4dca23/src/Relecloud.Web/Startup.cs#L202
-
-1. Instead we want to just set one setting - ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
-
-## Step 9: Closing out
-Back to slides -->
