@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
 using TodoListService.Filters;
 
 namespace TodoListService
@@ -20,6 +21,11 @@ namespace TodoListService
             });
 
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoListService", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +43,8 @@ namespace TodoListService
 
             app.UseRouting();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoListService"); });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
