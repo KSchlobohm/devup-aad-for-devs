@@ -21,13 +21,13 @@ This demo capture changes shown in the Pull Request https://github.com/KSchloboh
     DevUpConf2023 TodoListClient
     ```
 
-1. <span style="color:black; background: yellow; padding: 3px">Tip #1:</span> Diagnosing configuration issue with the Integration Assistant
+1. <span style="color:black; background: yellow; padding: 3px">Tip:</span> Diagnosing configuration issue with the Integration Assistant
 
     - We can see that there should be an owner, but also see that the required configurations are set:
         - RedirectUri
         - Issue id_tokens
 
-1. <span style="color:black; background: yellow; padding: 3px">Tip #2:</span> Quickstarts
+1. <span style="color:black; background: yellow; padding: 3px">Tip:</span> Quickstarts
     - Open the quickstart blade on the new App Registration
     - [And even more samples](https://learn.microsoft.com/azure/active-directory/develop/sample-v2-code?tabs=apptype)
 1. Choose ASP.NET Core Web App
@@ -43,7 +43,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 **Demo**
 
 
-1. <span style="color:black; background: yellow; padding: 3px">Tip #3:</span> - Testing Authentication with [authr.dev](https://authr.dev)
+1. <span style="color:black; background: yellow; padding: 3px">Tip:</span> - Testing Authentication with [authr.dev](https://authr.dev)
 - Provide 2 settings and set the redirectUri on the app registration
     - TenantId
     - ClientId
@@ -73,7 +73,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Use the App Registration from Azure AD and compare it to a known good state to check for differences.
 
-- <span style="color:black; background: yellow; padding: 3px">Tip #4:</span> Compare App Registration Manifests (use that one that works)
+- <span style="color:black; background: yellow; padding: 3px">Tip:</span> Compare App Registration Manifests (use that one that works)
 
 ## Step 5: Modify our frontend code to Authenticate users
 
@@ -110,7 +110,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Create a new Class the `TodoListDownstreamApi.cs` 
 
-    - <span style="color:black; background: yellow; padding: 3px">Tip #5:</span> Use the IDownstreamApi interface instead of HttpClient
+    - <span style="color:black; background: yellow; padding: 3px">Tip</span> Use the IDownstreamApi interface instead of HttpClient
     -  implement with toolbox/snippet
 
 1. Add the Login/Logout buttons
@@ -133,7 +133,7 @@ I find it's useful to debug things in isolation. Let's view some options to debu
 
 1. Modify the host configuration (replace app.UseRouting())
 
-    - <span style="color:black; background: yellow; padding: 3px">Tip #6:</span> is buried here: use this property to see better error messages when debugging your code.
+    - <span style="color:black; background: yellow; padding: 3px">Tip</span> is buried here: use this property to see better error messages when debugging your code.
 
     ```cs
         IdentityModelEventSource.ShowPII = true;
